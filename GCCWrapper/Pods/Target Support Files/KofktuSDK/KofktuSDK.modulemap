@@ -1,0 +1,6 @@
+framework module KofktuSDK {
+  umbrella header "KofktuSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

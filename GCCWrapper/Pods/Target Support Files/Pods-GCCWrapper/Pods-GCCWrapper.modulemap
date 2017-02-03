@@ -1,0 +1,6 @@
+framework module Pods_GCCWrapper {
+  umbrella header "Pods-GCCWrapper-umbrella.h"
+
+  export *
+  module * { export * }
+}

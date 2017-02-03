@@ -1,0 +1,19 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'GCCWrapper' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for GCCWrapper
+#  pod 'google-cast-sdk'
+  pod 'KofktuSDK', :git => 'https://github.com/Kofktu/KofktuSDK.git'
+
+  target 'GCCWrapperTests' do
+    inherit! :search_paths
+    # Pods for testing
+#    pod 'google-cast-sdk'
+    pod 'KofktuSDK', :git => 'https://github.com/Kofktu/KofktuSDK.git'
+  end
+
+end
