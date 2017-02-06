@@ -17,6 +17,11 @@ public enum GCCastState {
     case available
 }
 
+public extension Notification.Name {
+    static let gccDidConnect = Notification.Name(rawValue: "gccDidConnect")
+    static let gccDidDisconnect = Notification.Name(rawValue: "gccDidDisconnect")
+}
+
 open class GCCWrapper: NSObject {
     public static let `default` = GCCWrapper()
     public var isConnected: Bool {
@@ -58,6 +63,10 @@ open class GCCWrapper: NSObject {
     fileprivate var mediaControlChannel: GCKMediaControlChannel?
     fileprivate var applicationMeta: GCKApplicationMetadata?
     fileprivate weak var selectedDevice: GCKDevice?
+    
+    fileprivate var updateTimer: Timer?
+    fileprivate var updateInterval: TimeInterval = 1.0
+    fileprivate var onUpdateHandler: ((TimeInterval) -> Void)?
     
     fileprivate var lastDeviceId: String?
     fileprivate var lastSessionId: String?
@@ -114,10 +123,27 @@ open class GCCWrapper: NSObject {
         mediaControlChannel?.loadMedia(mediaInfo, autoplay: autoPlay, playPosition: playPosition)
     }
     
-    public func updateStatsFromDevice() {
+    open func addPositionObserver(for interval: TimeInterval, progress: ((TimeInterval) -> Void)?) {
+        updateTimer?.invalidate()
+        updateTimer = nil
+        
+        updateInterval = interval
+        onUpdateHandler = progress
+        
+        updateTimer = Timer(timeInterval: interval, target: self, selector: #selector(onUpdate), userInfo: nil, repeats: true)
+        RunLoop.current.add(updateTimer!, forMode: .commonModes)
+    }
+    
+    open func removePositionObserver() {
+        updateTimer?.invalidate()
+        updateTimer = nil
+        onUpdateHandler = nil
+    }
+    
+    open func updateStatsFromDevice() {
         guard let mediaControlChannel = mediaControlChannel, isConnected, let mediaStatus = mediaControlChannel.mediaStatus else { return }
         
-        streamPosition = mediaStatus.streamPosition
+        streamPosition = mediaControlChannel.approximateStreamPosition()
         playerState = mediaStatus.playerState
         mediaInformation = mediaStatus.mediaInformation
         
@@ -125,8 +151,6 @@ open class GCCWrapper: NSObject {
         } else {
             zeroSelectedTracks()
         }
-        
-        Log?.d("position : \(streamPosition)")
     }
     
     // MARK: - Private
@@ -176,6 +200,12 @@ open class GCCWrapper: NSObject {
         for track in tracks {
             selectedTrackByIdentifier?[track.identifier] = false
         }
+    }
+    
+    // MARK: - Action
+    internal func onUpdate() {
+        updateStatsFromDevice()
+        onUpdateHandler?(streamPosition)
     }
 }
 

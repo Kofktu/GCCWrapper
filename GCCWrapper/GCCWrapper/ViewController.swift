@@ -15,6 +15,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Scan", style: .plain, target: self, action: #selector(onScan))
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,6 +33,9 @@ class ViewController: UIViewController {
                                   imageUrl: "https://lh3.googleusercontent.com/sclRoFqqx9WvPY0WmvrHVvG8IayZkmAuD3rib66xEhZQx7uXazYOoXCmkkMlogExTNA=w300",
                                   imageSize: CGSize(width: 300.0, height: 300.0))
         GCCWrapper.default.loadMedia(media)
+        GCCWrapper.default.addPositionObserver(for: 1.0) { [unowned self] (interval) in
+            Log?.d("interval : \(interval)")
+        }
     }
     
     @IBAction func onPlay() {

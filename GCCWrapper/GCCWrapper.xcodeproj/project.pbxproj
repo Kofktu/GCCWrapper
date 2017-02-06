@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		60AB7DFECFF59638DD9771B8 /* Pods_GCCWrapperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11236E5AA67C162A5FC8741A /* Pods_GCCWrapperTests.framework */; };
 		85E5975A8B7F297243505769 /* Pods_GCCWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5FDC79030B902D46C7D6C5 /* Pods_GCCWrapper.framework */; };
+		C307C1411E483C4900B1984F /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C379724F1E4432B10085581C /* GoogleCast.framework */; };
+		C307C1421E483C4900B1984F /* GoogleCast.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C379724F1E4432B10085581C /* GoogleCast.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3592BFB1E44226800D570F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3592BFA1E44226800D570F9 /* AppDelegate.swift */; };
 		C3592BFD1E44226800D570F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3592BFC1E44226800D570F9 /* ViewController.swift */; };
 		C3592C001E44226800D570F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3592BFE1E44226800D570F9 /* Main.storyboard */; };
 		C3592C021E44226800D570F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3592C011E44226800D570F9 /* Assets.xcassets */; };
 		C3592C051E44226800D570F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3592C031E44226800D570F9 /* LaunchScreen.storyboard */; };
 		C3592C101E44226800D570F9 /* GCCWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3592C0F1E44226800D570F9 /* GCCWrapperTests.swift */; };
-		C37972501E4432B10085581C /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C379724F1E4432B10085581C /* GoogleCast.framework */; };
 		C37972511E4432B10085581C /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C379724F1E4432B10085581C /* GoogleCast.framework */; };
 		C37972541E44402B0085581C /* GCCWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37972531E44402B0085581C /* GCCWrapper.swift */; };
 		C37972551E44402B0085581C /* GCCWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37972531E44402B0085581C /* GCCWrapper.swift */; };
@@ -32,6 +33,20 @@
 			remoteInfo = GCCWrapper;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C307C1431E483C4900B1984F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C307C1421E483C4900B1984F /* GoogleCast.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		11236E5AA67C162A5FC8741A /* Pods_GCCWrapperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GCCWrapperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C37972501E4432B10085581C /* GoogleCast.framework in Frameworks */,
+				C307C1411E483C4900B1984F /* GoogleCast.framework in Frameworks */,
 				85E5975A8B7F297243505769 /* Pods_GCCWrapper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,6 +178,7 @@
 				C3592BF51E44226800D570F9 /* Resources */,
 				8F375E80488409DB1D298FF1 /* [CP] Embed Pods Frameworks */,
 				89C503131F2BC3A65F4731BD /* [CP] Copy Pods Resources */,
+				C307C1431E483C4900B1984F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

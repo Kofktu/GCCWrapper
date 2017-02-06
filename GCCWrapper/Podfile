@@ -8,6 +8,7 @@ target 'GCCWrapper' do
   # Pods for GCCWrapper
 #  pod 'google-cast-sdk'
   pod 'KofktuSDK', :git => 'https://github.com/Kofktu/KofktuSDK.git'
+  pod 'GDPerformanceView', '~> 1.3.0'
 
   target 'GCCWrapperTests' do
     inherit! :search_paths

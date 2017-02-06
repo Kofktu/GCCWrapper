@@ -8,6 +8,7 @@
 
 import UIKit
 import KofktuSDK
+import GDPerformanceView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         Logger.style = .verbose
+        GDPerformanceMonitor.sharedInstance().configureStatusBarAppearance(withPrefersStatusBarHidden: false, preferredStatusBarStyle: UIStatusBarStyle.default.rawValue)
+        GDPerformanceMonitor.sharedInstance().isAppVersionHidden = true
+        GDPerformanceMonitor.sharedInstance().isDeviceVersionHidden = true
+        GDPerformanceMonitor.sharedInstance().startMonitoring()
         GCCWrapper.default.setup()
+        
         
         return true
     }
